@@ -134,6 +134,12 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pillow
 
 
 
+### \*3.1.6 main-mac.py
+
+使用 Mac 系统的主程序文件，功能与“ main.py” 相同。
+
+
+
 ## 3.2 配置文件
 
 ### 3.2.1 config2.json
