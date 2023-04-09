@@ -117,6 +117,7 @@ def set_config(default=False):
                 del major_ch_en[entry_add_major.get()]
                 entry_add_major.delete(0, END)
 
+        # 对配置的相关参数进行更改
         config['students_list_path'] = students_list_path
         config['outputs_dir'] = outputs_dir
         config['stu_info_columns'] = stu_info_columns
@@ -125,17 +126,20 @@ def set_config(default=False):
         config['document_type'] = outputs_format
         config['ch_en'] = major_ch_en
         show_popup("提示", "保存成功！")
-        if default:
+        if default:  # 如果选择“设为默认”将重写配置文件
             with open(cwd + '/config2.json', 'w', encoding='utf-8') as f2:
                 json.dump(config, f2)
             root.update()
 
+    # 如果部分参数不符合要求
     except ValueError:
         show_popup('提示', "请填入正确的参数或参数类型")
 
 
+# 本程序的主函数 #
 if __name__ == '__main__':
 
+    # 读取工作目录并初始化配置
     cwd = os.getcwd()
     if not (os.path.exists(cwd + '/config2.json') or os.path.exists(cwd + '/config-batch.json')):
         from initConfig import config, config_batch
@@ -144,6 +148,7 @@ if __name__ == '__main__':
         with open(cwd + '/config-batch.json', 'w', encoding='utf-8') as f:
             json.dump(config_batch, f)
 
+    # 读取配置文件
     config = read_config(cwd, 'config2.json')
     config_batch = read_config(cwd, 'config-batch.json')
 
@@ -156,7 +161,7 @@ if __name__ == '__main__':
     input_dir = config_batch["input_dir"]
     major_ch_en = config['ch_en']
 
-    # 创建一个窗口对象
+    # 创建窗口对象
     root = Tk()
     root.title('平均分计算')
     if os.path.exists('./icon.ico'):
@@ -166,7 +171,7 @@ if __name__ == '__main__':
     screen_width = root.winfo_screenwidth()
     screen_height = root.winfo_screenheight()
 
-    # 计算窗口宽度和高度
+    # 窗口宽度和高度
     window_width = 550
     window_height = 650
 
@@ -194,6 +199,7 @@ if __name__ == '__main__':
     frame3 = ttk.Frame(notebook)
     notebook.add(frame3, text=' 自定义设置 ')
 
+    # 如果目录下有“background.png”的图片，会将其加载为背景
     if os.path.exists(cwd + '/background.png'):
         image = Image.open("background.png").resize((545, 680))
         x, y = image.size  # 获得长和宽
@@ -217,6 +223,7 @@ if __name__ == '__main__':
     entry_name = Entry(frame1, width=10)
     entry_name.place(relx=0.19, rely=0.11, anchor='s')
 
+    # 学号部分
     label_num = Label(frame1, text="学号")
     label_num.place(relx=0.37, rely=0.11, anchor='s')
     entry_num = Entry(frame1, width=12)
@@ -225,27 +232,32 @@ if __name__ == '__main__':
     button_import.place(relx=0.62, rely=0.115, anchor='s')
     entry_num.bind('<Button-3>', lambda a: right_click(a, frame1, entry_num))
 
+    # 性别部分
     label_sex = Label(frame1, text="性别")
     label_sex.place(relx=0.7, rely=0.11, anchor='s')
     entry_sex = Combobox(frame1, values=config['options_sex'], width=10)
     entry_sex.place(relx=0.83, rely=0.11, anchor='s')
 
+    # 年级部分
     label_grade = Label(frame1, text="年级")
     label_grade.place(relx=0.07, rely=0.20, anchor='s')
     entry_grade = Entry(frame1, width=10)
     entry_grade.place(relx=0.19, rely=0.20, anchor='s')
     entry_grade.insert(END, entry_num.get())
 
+    # 专业名称部分
     label_major = Label(frame1, text="专业")
     label_major.place(relx=0.37, rely=0.20, anchor='s')
     entry_major = Combobox(frame1, values=list(major_ch_en.keys()), width=22)
     entry_major.place(relx=0.58, rely=0.20, anchor='s')
 
+    # 姓名拼音部分
     label_name_en = Label(frame1, text="姓名（拼音）")
     label_name_en.place(relx=0.115, rely=0.29, anchor='s')
     entry_name_en = Entry(frame1, width=10)
     entry_name_en.place(relx=0.26, rely=0.29, anchor='s')
 
+    # 专业的英文名称部分
     label_major_en = Label(frame1, text="专业（英文）")
     label_major_en.place(relx=0.44, rely=0.29, anchor='s')
     entry_major_en = Combobox(frame1, values=list(major_ch_en.values()), width=22)
@@ -295,6 +307,7 @@ if __name__ == '__main__':
                                                        frame1, config))
     submit_button2.place(relx=0.5, rely=0.93, anchor='s')
 
+    # 重置所有输入
     clear_button = Button(frame1, text=" 重 置 ", command=lambda: clear_input(entry_name, entry_num, entry_sex,
                                                                             entry_grade, entry_major, entry_scores,
                                                                             entry_major_en, entry_name_en,
@@ -310,13 +323,14 @@ if __name__ == '__main__':
     browse_button_input_dir = Button(frame2, text="选择文件夹", command=lambda: open_directory(entry_input_dir))
     browse_button_input_dir.place(relx=0.91, rely=0.168, anchor='s')
 
+    # 设置输出文档的平均分计算方式
     option_calc_type_batch = IntVar()
     label_type_batch = Label(frame2, text="计分方式")
     label_type_batch.place(relx=0.093, rely=0.252, anchor='s')
     Radiobutton(frame2, text="算数平均", variable=option_calc_type_batch, value=1).place(relx=0.25, rely=0.258, anchor='s')
     Radiobutton(frame2, text="加权平均", variable=option_calc_type_batch, value=2).place(relx=0.4, rely=0.258, anchor='s')
 
-    #
+    # 确认导出按钮
     button_confirm_export = Button(frame2, text=' 确认导出 ', command=lambda: export_batch(entry_input_dir.get(),
                                                                                        students_list_path,
                                                                                        option_calc_type_batch.get(),

@@ -36,11 +36,17 @@ def open_directory(entry):
 
 
 def clear_input(*args: Entry):
+    """
+    重置所有输入。
+    """
     for ent in args:
         ent.delete(0, END)
 
 
 def read_config(path_, file):
+    """
+    读取配置文件。
+    """
     with open(path_ + '/%s' % file, 'r', encoding='utf-8') as f:
         config_ = json.load(f)
     if len(config_) <= 3:
@@ -56,7 +62,6 @@ def read_config(path_, file):
 def calc_score(stu_name, stu_num, stu_sex, stu_grade, stu_major, score_file, opt_1, opt_2, stu_major_en, output=False,
                lim_scores_=200, score_place=None, frame_: tk.Frame = None, config: dict = None):
     """
-
     :param stu_name: 学生姓名（中文）
     :param stu_num: 学生学号
     :param stu_sex: 学生性别
@@ -69,8 +74,6 @@ def calc_score(stu_name, stu_num, stu_sex, stu_grade, stu_major, score_file, opt
     :param output: 是否输出文档：True表明需要输出；False将不会输出文档
     :param lim_scores_: 成绩条数上限，默认为200
     :param score_place: 成绩表中学分和分数的默认所在列
-    :param frame_:
-    :param config:
     :return: None
 
     是这个程序的主要函数之一，负责平均分的计算、字符串的解析和输出以及控制是否输出文档。
@@ -87,7 +90,7 @@ def calc_score(stu_name, stu_num, stu_sex, stu_grade, stu_major, score_file, opt
         show_popup('提示', '请选择或输入正确的成绩表')  # 没有找到目标文件或目标文件无法识别将出现弹窗
         return
 
-    # 字符串解析开始
+    # 字符串解析开始 ######
     if opt_2 == 2:
         type_2 = '加权'
         type_2_en = 'weighted '
@@ -136,7 +139,7 @@ def calc_score(stu_name, stu_num, stu_sex, stu_grade, stu_major, score_file, opt
         text_score = tk.Text(frame_, height=1, width=15, font=("Times New Roman", 10))
         text_score.insert('end', f'{average_score}')
         text_score.place(relx=0.72, rely=0.452, anchor='s')
-    # 字符串解析结束
+    # 字符串解析结束 ######
 
     # 如果用户点击“导出文档”，将执行下列语句
     if output:
@@ -148,11 +151,7 @@ def calc_score(stu_name, stu_num, stu_sex, stu_grade, stu_major, score_file, opt
 
 def show_popup(title, text, anchor='s'):
     """
-    显示弹出窗口的函数
-    :param anchor:
-    :param title: 弹窗的标题
-    :param text: 弹窗中显示的文字
-    :return: None
+    显示弹出窗口的函数。
     """
     popup = tk.Toplevel()
     screen_width_ = popup.winfo_screenwidth()
@@ -169,6 +168,9 @@ def show_popup(title, text, anchor='s'):
 
 
 def right_click(event, master, editor):
+    """
+    设置右键菜单的函数。
+    """
     menubar = tk.Menu(master, tearoff=False)
     menubar.delete(0, END)
     menubar.add_command(label='复制', command=lambda: editor.event_generate("<<Copy>>"))

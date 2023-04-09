@@ -161,9 +161,9 @@ def gen_document(text_zh: str, text_en: str, text_en2: str, stu_name: str, stu_n
     doc_path = path_ + '/%s_%s%s.docx' % (stu_num, stu_name, on_graduate)
     print(doc_type)
     document.save(doc_path)
-    if doc_type == 2:
+    if doc_type == 2:  # 只保留PDF文档
         convert(doc_path, path_ + '/%s_%s%s.pdf' % (stu_num, stu_name, on_graduate))
         os.remove(doc_path)
-    if doc_type == 3:
+    if doc_type == 3:  # 两种文档都保留
         convert(doc_path, path_ + '/%s_%s%s.pdf' % (stu_num, stu_name, on_graduate))
 
