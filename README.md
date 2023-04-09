@@ -148,7 +148,7 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pillow
 
 
 
-# 4、其它说明
+# 4、其他说明
 
 项目 GitHub 地址：https://github.com/ArdentLiby/SHNU_Finance_Programming.git
 
