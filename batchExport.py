@@ -10,7 +10,7 @@ import pandas as pd
 from tkinter import Frame, Text, END, Label
 from assist import read_config, show_popup, calc_score
 
-cwd = os.getcwd()
+cwd = os.getcwd()  # 获取当前工作路径
 
 
 def export_batch(path_scores, students_list_path, average_type, stu_info_col=None, lim_scores=200,

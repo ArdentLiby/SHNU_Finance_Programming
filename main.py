@@ -19,7 +19,7 @@ from batchExport import export_batch
 
 def import_list(stu_num, stu_info_col=None):
     """
-    :param stu_num:
+    :param stu_num: 学生的学号。
     :param stu_info_col: 学生信息的列数分布（为内置变量）。
     :return: None
 

@@ -146,3 +146,11 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pillow
 
 控制批量生成的配置文件，只保存了批量生成文件的文档类型和需要批处理的文件两项设置。批处理功能的其他设置均以主要配置文件为准。
 
+
+
+# 4、其它说明
+
+项目 GitHub 地址：https://github.com/ArdentLiby/SHNU_Finance_Programming.git
+
+所有代码、配置文件和测试数据均已上传。
+

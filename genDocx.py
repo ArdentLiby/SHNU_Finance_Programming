@@ -10,7 +10,7 @@ from docx.oxml.ns import qn
 from docx.shared import Pt, Cm
 from docx2pdf import convert
 
-# 获取生成证明的日期
+# 获取生成证明的日期（今日）
 year = time.localtime().tm_year
 month = time.localtime().tm_mon
 day = time.localtime().tm_mday

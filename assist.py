@@ -13,7 +13,7 @@ from genDocx import gen_document
 
 
 def open_file(entry):
-    # 打开文件选择对话框
+    # 打开文件选择窗口
     filetypes = (
         ("Excel files", "*.xlsx"), ("Excel 97-2003 files", "*.xls"), ("CSV files", "*.csv"), ("All files", "*.*"))
     # 打开文件对话框，并限制允许导入的文件类型
