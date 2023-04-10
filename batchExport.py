@@ -36,7 +36,6 @@ def export_batch(path_scores, students_list_path, average_type, stu_info_col=Non
                 success.append(path_scores + '/' + f)
             except BaseException as e:  # 出现错误便会加入导出失败的列表
                 print(e)
-                show_popup('a', e)
                 failures.append(path_scores + '/' + f)
 
     # 输出导出文件的结果（有未成功导出的情况）

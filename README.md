@@ -156,7 +156,7 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pillow
 
 # 4、其他说明
 
-项目 GitHub 地址：https://github.com/ArdentLiby/SHNU_Finance_Programming.git
+本项目的 GitHub 仓库地址：https://github.com/ArdentLiby/SHNU_Finance_Programming.git
 
-所有代码、配置文件和测试数据均已上传。
+所有代码、配置文件和测试数据均已上传。本人保证所有代码均为原创。
 
