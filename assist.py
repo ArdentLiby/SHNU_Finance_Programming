@@ -118,12 +118,12 @@ def calc_score(stu_name, stu_num, stu_sex, stu_grade, stu_major, score_file, opt
     pinyin_list = pypinyin.lazy_pinyin(stu_name)
     stu_name_en = (pinyin_list[0].upper() + ' ' + ''.join(pinyin_list[1:]).capitalize())
 
-    text_zh_content = f"姓名：{stu_name}，性别：{stu_sex}，学号：{stu_num}，系我院{stu_grade[:4]}级{stu_major}专业的" \
+    text_zh_content = f"姓名：{stu_name}，性别：{stu_sex}，学号：{stu_num}，系我院{str(stu_grade)[:4]}级{stu_major}专业的" \
                       f"学生。{type_}所修读的所有课程的{type_2}平均分为{average_score}。"
 
     text_en_content_0 = f"This is to certify that the student {stu_name_en} ({config['sex_matchup'][stu_sex][0]})," \
                         f" Student Number: {stu_num}," \
-                        f" has registered in {stu_grade[:4]} in the major of {stu_major_en} at School of" \
+                        f" has registered in {str(stu_grade)[:4]} in the major of {stu_major_en} at School of" \
                         f" Finance and Business of Shanghai Normal University."
     text_en_content = text_en_content_0 + ' ' + type_en
 
