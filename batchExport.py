@@ -10,7 +10,7 @@ import pandas as pd
 from tkinter import Frame, Text, END, Label
 from assist import read_config, show_popup, calc_score
 
-os.chdir(os.path.dirname(__file__))
+# os.chdir(os.path.dirname(__file__))
 cwd = os.getcwd()  # 获取当前工作路径
 
 
